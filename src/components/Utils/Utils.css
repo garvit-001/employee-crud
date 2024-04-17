@@ -1,0 +1,112 @@
+.containers {
+  display: flex;
+  flex-direction: column;
+  width: 35vw;
+  /* max-width: 80vw; */
+  max-height: 80vh;
+  border: 2px solid black;
+  padding: 10px;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  background-color: #2b3d3d;
+}
+
+.mb3 {
+  display: flex;
+  /* border: 2px solid black; */
+  padding: 10px;
+  margin: auto;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.my3 {
+  display: flex;
+  /* border: 2px solid black; */
+  padding: 10px;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-grp {
+  display: flex;
+  /* border: 2px solid black; */
+  padding: 10px;
+  margin: auto;
+  max-height: 80vh;
+  justify-content: space-between;
+  align-items: center;
+}
+
+input {
+  height: 30px;
+  width: 20vw;
+  background-color: rgb(255, 255, 255);
+  color: black;
+}
+
+img {
+  width: 40px;
+  height: 70%;
+  padding: 10px 10px;
+}
+
+.nav {
+  top: 0px;
+  background-color: #283333;
+  position: fixed;
+  height: 8%;
+  width: 100%;
+  left: 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+select {
+  width: 60%;
+  height: 35px;
+  background-color: white;
+  color: black;
+}
+
+.DOB {
+  color: black;
+  background-color: white;
+}
+
+.switch {
+  justify-content: flex-end;
+}
+
+/* Table styles */
+.table-container {
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif; /* Specify your preferred font family */
+}
+
+table th,
+table td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+table th {
+  font-weight: bold;
+}
+
+.modal-fade {
+  color: black;
+}
+
+input {
+  color: black;
+}
