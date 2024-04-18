@@ -30,11 +30,6 @@ const employee_api = process.env.employee_api;
 app.use(auth_api, auth);
 app.use(employee_api, employee);
 
-// app.get("/", (req, res) => {
-//   console.log(req.url);
-//   res.send("Hello, it's garvit!");
-// });
-
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });

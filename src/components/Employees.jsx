@@ -4,19 +4,22 @@ import { useNavigate } from "react-router-dom";
 import "../components/Utils/Utils.css";
 import EmployeeContext from "../context/EmployeeContext";
 import EmployeeItem from "./EmployeeItem";
+import InputField from "./Utils/InputField";
+import { constant } from "./Utils/Constants";
 
 const Employees = () => {
   const context = useContext(EmployeeContext);
   const { employee, getEmployee, editEmployee } = context;
   const [emp, setEmp] = useState({
-    efirst: "",
-    elast: "",
-    eemail: "",
-    eage: "",
-    eDOB: "",
-    edepartment: "Tech",
+    constant,
     id: "",
   });
+  console.log(
+    "got the constant",
+    constant.DOB,
+    constant.first,
+    constant.department
+  );
   const ref = useRef(null);
   const refClose = useRef(null);
   const navigate = useNavigate();
@@ -43,28 +46,22 @@ const Employees = () => {
       eage: currNote.age,
       edepartment: currNote.department,
     });
+    console.log("setted data", constant);
   };
 
   const handleClick = (e) => {
     e.preventDefault();
     editEmployee(
       emp.id,
-      emp.efirst,
-      emp.elast,
-      emp.eemail,
-      emp.eage,
-      emp.eDOB,
-      emp.edepartment
+      emp.constant.first,
+      emp.constant.last,
+      emp.constant.email,
+      emp.constant.age,
+      emp.constant.DOB,
+      emp.constant.department
     );
     refClose.current.click();
-    setEmp({
-      efirst: "",
-      elast: "",
-      eemail: "",
-      eage: "",
-      eDOB: "",
-      edepartment: "Tech",
-    });
+    setEmp(constant);
   };
   const onChange = (e) => {
     setEmp({ ...emp, [e.target.name]: e.target.value });
@@ -103,82 +100,56 @@ const Employees = () => {
             </div>
             <div className="modal-body">
               <form className="my-3">
-                <div className="mb-3">
-                  <label htmlFor="efirst" className="form-label">
-                    first
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="efirst"
-                    name="efirst"
-                    value={emp.efirst}
-                    aria-describedby="emailHelp"
-                    onChange={onChange}
-                    required={true}
-                    minLength={5}
-                  />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="elast" className="form-label">
-                    last
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="elast"
-                    name="elast"
-                    value={emp.elast}
-                    onChange={onChange}
-                    required={true}
-                    minLength={5}
-                  />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="eage" className="form-label">
-                    age
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="eage"
-                    name="eage"
-                    value={emp.eage}
-                    onChange={onChange}
-                    required={true}
-                    minLength={5}
-                  />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="email" className="form-label">
-                    email
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="eemail"
-                    name="eemail"
-                    value={emp.eemail}
-                    onChange={onChange}
-                    required={true}
-                    minLength={5}
-                  />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="eDOB" className="form-label">
-                    DOB
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="eDOB"
-                    name="eDOB"
-                    value={emp.eDOB}
-                    onChange={onChange}
-                    required={true}
-                    minLength={5}
-                  />
-                </div>
+                <InputField
+                  label="First"
+                  type="text"
+                  id="efirst"
+                  name="efirst"
+                  value={emp.constant.first}
+                  onChange={onChange}
+                  required={true}
+                  minLength={5}
+                />
+                <InputField
+                  label="Last"
+                  type="text"
+                  id="elast"
+                  name="elast"
+                  value={emp.constant.last}
+                  onChange={onChange}
+                  required={true}
+                  minLength={5}
+                />
+                <InputField
+                  label="Age"
+                  type="text"
+                  id="eage"
+                  name="eage"
+                  value={emp.constant.age}
+                  onChange={onChange}
+                  required={true}
+                  minLength={5}
+                />
+                <InputField
+                  label="Email"
+                  type="text"
+                  id="eemail"
+                  name="eemail"
+                  value={emp.constant.email}
+                  onChange={onChange}
+                  required={true}
+                  minLength={5}
+                />
+                <InputField
+                  label="DOB"
+                  type="text"
+                  id="eDOB"
+                  name="eDOB"
+                  value={emp.constant.DOB}
+                  onChange={onChange}
+                  required={true}
+                  minLength={5}
+                />
                 <div className="mb-3">
                   <label htmlFor="edepartment" className="form-label">
                     department
@@ -188,7 +159,7 @@ const Employees = () => {
                     className="form-control"
                     id="edepartment"
                     name="edepartment"
-                    value={emp.edepartment}
+                    value={emp.constant.department}
                     onChange={onChange}
                     required={true}
                     minLength={5}

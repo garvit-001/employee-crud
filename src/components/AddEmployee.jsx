@@ -1,69 +1,32 @@
 import React, { useContext, useState } from "react";
 import "./Utils/Utils.css";
 import Home from "./Home";
-import {useNavigate} from "react-router-dom";
-import EmployeeContext from "../context/EmployeeContext";
+import { useNavigate } from "react-router-dom";
+import callApi from "../services/apiService";
+import InputField from "./Utils/InputField";
+import { constant } from "./Utils/Constants";
 
 const AddEmployee = () => {
-  const context = useContext(EmployeeContext);
-  const { addEmployee } = context;
-
-  const [credentials, setCredentials] = useState({
-    first: "",
-    last: "",
-    email: "",
-    age: "",
-    DOB: "",
-    department: "Tech",
-  });
+  const [credentials, setCredentials] = useState(constant);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { first, last, email, age, DOB, department } = credentials;
-
-    // addEmployee(
-    //   credentials.first,
-    //   credentials.last,
-    //   credentials.email,
-    //   credentials.age,
-    //   credentials.DOB,
-    //   credentials.department
-    // );
-    // setCredentials({
-    //   first: "",
-    //   last: "",
-    //   email: "",
-    //   age: "",
-    //   DOB: "",
-    //   department: "Tech",
-    // });
-
-    // navigate("/employees");
-
-
-    const response = await fetch("http://localhost:5000/api/employee/adduser", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        authToken: localStorage.getItem("authToken"),
-      },
-      body: JSON.stringify({
-        first,
-        last,
-        email,
-        age,
-        DOB,
-        department,
-      }),
-    });
-    const json = await response.json();
-    console.log("succ", response);
-    if (response.status == 200) {
-      // Save the auth token and redirect
-      navigate("/employees", { state: { json } });
-    } else {
-      alert("Invalid credentials");
+    try {
+      const response = await callApi("/employee/adduser", "POST", credentials);
+      console.log(response);
+      const json = await response.json();
+      console.log("succ", response);
+      if (response.status == 200) {
+        // Save the auth token and redirect
+        navigate("/employees", { state: { json } });
+      } else {
+        alert("Invalid credentials");
+      }
+      // Handle success
+    } catch (error) {
+      console.error(error.message);
+      // Handle error
     }
 
     // localStorage.setItem("authToken", json.user.id);
@@ -91,69 +54,56 @@ const AddEmployee = () => {
       <div className="container">
         {/* <h1 className="m-2 text-center">SignUp Form</h1> */}
         <form onSubmit={handleSubmit}>
-          <div className="form-group my-3">
-            <label htmlFor="name">First Name</label>
-            <input
-              type="text"
-              className="form-control"
-              id="First"
-              aria-describedby="emailHelp"
-              placeholder="Enter first name"
-              onChange={onChange}
-              name="first"
-              required={true}
-            />
-          </div>
-          <div className="form-group my-3">
-            <label htmlFor="name">Last Name</label>
-            <input
-              type="text"
-              className="form-control"
-              id="last"
-              aria-describedby="emailHelp"
-              placeholder="Enter last Username"
-              onChange={onChange}
-              name="last"
-              required={true}
-            />
-          </div>
-          <div className="form-group my-3">
-            <label htmlFor="email">Alternate Email</label>
-            <input
-              type="email"
-              className="form-control"
-              id="email"
-              aria-describedby="emailHelp"
-              placeholder="Enter email"
-              onChange={onChange}
-              name="email"
-              required={true}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="age">Age</label>
-            <input
-              type="number"
-              className="form-control"
-              id="age"
-              placeholder="Age"
-              name="age"
-              onChange={onChange}
-              required={true}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="DOB">Date of Birth</label>
-            <input
-              type="date"
-              className="form-control"
-              id="DOB"
-              name="DOB"
-              ClassName="DOB"
-              onChange={onChange}
-              required={true}
-            />
-          </div>
+          <InputField
+        label="First Name"
+        type="text"
+        id="First"
+        placeholder="Enter first name"
+        name="first"
+        value={credentials.first}
+        onChange={onChange}
+        required={true}
+      />
+      <InputField
+        label="Last Name"
+        type="text"
+        id="last"
+        placeholder="Enter last name"
+        name="last"
+        value={credentials.last}
+        onChange={onChange}
+        required={true}
+      />
+      <InputField
+        label="Alternate Email"
+        type="email"
+        id="email"
+        placeholder="Enter email"
+        name="email"
+        value={credentials.email}
+        onChange={onChange}
+        required={true}
+      />
+      <InputField
+        label="Age"
+        type="number"
+        id="age"
+        placeholder="Age"
+        name="age"
+        value={credentials.age}
+        onChange={onChange}
+        required={true}
+      />
+      <InputField
+        label="Date of Birth"
+        type="date"
+        id="DOB"
+        name="DOB"
+        placeholder="Date of Birth"
+        value={credentials.DOB}
+        onChange={onChange}
+        required={true}
+      />
           <div className="form-group my-3">
             <label htmlFor="department">Select Department</label>
             <select onChange={onChange} name="department" id="department">

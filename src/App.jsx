@@ -3,12 +3,15 @@ import Login from "./components/Login";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Signup from "./components/Signup";
 // import Home from "./components/Home";
+// import { config } from './config';
 import Employees from "./components/Employees";
 import AddEmployee from "./components/AddEmployee";
 import EmployeeState from "./context/EmployeeState";
 
 function App() {
-  console.log(process.env.REACT_APP_NAME);
+  // const name = process.env.REACT_APP_NAME;
+  // console.log(name);
+  // console.log(config);
   return (
     <EmployeeState>
       <BrowserRouter>

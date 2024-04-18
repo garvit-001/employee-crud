@@ -1,41 +1,24 @@
 const express = require("express");
 const router = express.Router();
 const fetchuser = require("../middleware/fetchuser");
-const { body, validationResult } = require("express-validator");
-const User = require("../models/User");
-const Employee = require("../models/Employee");
-const { addUser } = require("../controllers/addUser");
-const { updateUser } = require("../controllers/updateUser");
-const { deleteUser } = require("../controllers/deleteUser");
-// cosnt {fetchEmployee} = require('../controllers/fetchEmployee')
+const userController = require("../controllers/user.controller");
+const userValidator = require("../validators/user.validation");
 
-//Route 1 : Get notes corresponding to a user using :GET "/api/notes/fetchallnotes",,, require login
-router.get("/fetchallemployees", fetchuser, async (req, res) => {
-  try {
-    const employees = await Employee.find({ admin: req.user.id });
-    // console.log(employees);
-    res.send(employees);
-  } catch (error) {
-    // console.log(error.message);
-    res.status(500).json("Some error occured");
-  }
-});
+router.get("/fetchallemployees", fetchuser, userController.fetchallemployee);
 
-//Route 2 : Add notes using :POST "/api/notes/addnotes",,, require login
 router.post(
   "/adduser",
   fetchuser,
-  [
-    body("age", "Age must be a number").isNumeric(),
-    body("email", "Not a valid email").isEmail(),
-  ],
-  addUser
+  userValidator.addUser,
+  userController.addUser
 );
 
-//Route 3 : upadate notes using :PUT "/api/notes/updatenote",,, require login
-router.put("/updateuser/:id", fetchuser, updateUser);
-
-//Route 4 : Delete a note using :DELETE "/api/notes/deletenote",,, require login
-router.delete("/deleteuser/:id", fetchuser, deleteUser);
+router.put("/updateuser/:id", fetchuser, userController.updateUser);
+router.delete("/deleteuser/:id", fetchuser, userController.deleteUser);
 
 module.exports = router;
+
+//Route 1 : Get notes corresponding to a user using :GET "/api/notes/fetchallnotes",,, require login
+//Route 3 : upadate notes using :PUT "/api/notes/updatenote",,, require login
+//Route 2 : Add notes using :POST "/api/notes/addnotes",,, require login
+//Route 4 : Delete a note using :DELETE "/api/notes/deletenote",,, require login
