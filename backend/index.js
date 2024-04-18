@@ -5,7 +5,7 @@ const port = 5000;
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 const auth = require("./Routes/auth");
-const employee = require("./Routes/employee");
+const employee = require("./Routes/routes");
 
 dotenv.config();
 var cors = require("cors");

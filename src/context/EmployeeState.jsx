@@ -6,10 +6,9 @@ const EmployeeState = (props) => {
   // API CALL to fetch all Employee from backend
   // dotenv.config();
   // console.log(process.env.REACT_APP_NAME);
-  
   const employeeOnitial = [];
-  const [employee, setEmployee] = useState(employeeOnitial);
 
+  const [employee, setEmployee] = useState(employeeOnitial);
   // get all Employee
   const getEmployee = async () => {
     try {

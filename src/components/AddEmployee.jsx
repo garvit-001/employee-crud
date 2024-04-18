@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
-import "./Utils/Utils.css";
+import "../Utils/Utils.css";
 import Home from "./Home";
 import { useNavigate } from "react-router-dom";
-import callApi from "../services/apiService";
-import InputField from "./Utils/InputField";
-import { constant } from "./Utils/Constants";
+import { callApi } from "../services/apiService";
+import InputField from "../Utils/InputField";
+import { constant } from "../Utils/Constants";
 
 const AddEmployee = () => {
   const [credentials, setCredentials] = useState(constant);
@@ -55,55 +55,55 @@ const AddEmployee = () => {
         {/* <h1 className="m-2 text-center">SignUp Form</h1> */}
         <form onSubmit={handleSubmit}>
           <InputField
-        label="First Name"
-        type="text"
-        id="First"
-        placeholder="Enter first name"
-        name="first"
-        value={credentials.first}
-        onChange={onChange}
-        required={true}
-      />
-      <InputField
-        label="Last Name"
-        type="text"
-        id="last"
-        placeholder="Enter last name"
-        name="last"
-        value={credentials.last}
-        onChange={onChange}
-        required={true}
-      />
-      <InputField
-        label="Alternate Email"
-        type="email"
-        id="email"
-        placeholder="Enter email"
-        name="email"
-        value={credentials.email}
-        onChange={onChange}
-        required={true}
-      />
-      <InputField
-        label="Age"
-        type="number"
-        id="age"
-        placeholder="Age"
-        name="age"
-        value={credentials.age}
-        onChange={onChange}
-        required={true}
-      />
-      <InputField
-        label="Date of Birth"
-        type="date"
-        id="DOB"
-        name="DOB"
-        placeholder="Date of Birth"
-        value={credentials.DOB}
-        onChange={onChange}
-        required={true}
-      />
+            label="First Name"
+            type="text"
+            id="First"
+            placeholder="Enter first name"
+            name="first"
+            value={credentials.first}
+            onChange={onChange}
+            required={true}
+          />
+          <InputField
+            label="Last Name"
+            type="text"
+            id="last"
+            placeholder="Enter last name"
+            name="last"
+            value={credentials.last}
+            onChange={onChange}
+            required={true}
+          />
+          <InputField
+            label="Alternate Email"
+            type="email"
+            id="email"
+            placeholder="Enter email"
+            name="email"
+            value={credentials.email}
+            onChange={onChange}
+            required={true}
+          />
+          <InputField
+            label="Age"
+            type="number"
+            id="age"
+            placeholder="Age"
+            name="age"
+            value={credentials.age}
+            onChange={onChange}
+            required={true}
+          />
+          <InputField
+            label="Date of Birth"
+            type="date"
+            id="DOB"
+            name="DOB"
+            placeholder="Date of Birth"
+            value={credentials.DOB}
+            onChange={onChange}
+            required={true}
+          />
           <div className="form-group my-3">
             <label htmlFor="department">Select Department</label>
             <select onChange={onChange} name="department" id="department">

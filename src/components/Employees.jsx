@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 // import AddEmployee from "./AddEmployee";
-import "../components/Utils/Utils.css";
+import "../Utils/Utils.css";
 import EmployeeContext from "../context/EmployeeContext";
 import EmployeeItem from "./EmployeeItem";
-import InputField from "./Utils/InputField";
-import { constant } from "./Utils/Constants";
+import InputField from "../Utils/InputField";
+import { constant } from "../Utils/Constants";
 
 const Employees = () => {
   const context = useContext(EmployeeContext);

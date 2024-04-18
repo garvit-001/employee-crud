@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Utils/Utils.css";
+import "../Utils/Utils.css";
 import { useNavigate, Link } from "react-router-dom";
 
 const Login = () => {
@@ -80,9 +80,7 @@ const Login = () => {
           />
         </div>
 
-        <button type="submit">
-          Submit
-        </button>
+        <button type="submit">Submit</button>
         <p className="switch">
           New User? click<Link to="/">here</Link>
         </p>

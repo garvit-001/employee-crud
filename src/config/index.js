@@ -1,8 +1,11 @@
-import dev from './dev';
-import staging from './staging';
-import prd from './prd';
+export const prd = {
+    domain: 'http://example.com'
+  }
+ 
+ export const staging = {
+    domain: 'http://example-staging.com'
+  }
 
-// const config = { dev, staging, prd }[process.env.REACT_APP_ENV]
-const config = { dev, staging, prd }
-
-export { config }
+ export const dev = {
+    domain: 'http://example-dev.com'
+  }

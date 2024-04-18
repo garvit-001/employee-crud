@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilePen, faTrash } from "@fortawesome/free-solid-svg-icons";
-import "../components/Utils/Utils.css";
+import "../Utils/Utils.css";
 import EmployeeContext from "../context/EmployeeContext";
 
 const EmployeeItem = (props) => {

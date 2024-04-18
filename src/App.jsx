@@ -9,9 +9,8 @@ import AddEmployee from "./components/AddEmployee";
 import EmployeeState from "./context/EmployeeState";
 
 function App() {
-  // const name = process.env.REACT_APP_NAME;
-  // console.log(name);
-  // console.log(config);
+  // console.log(process.env.REACT_APP_NAME);
+  console.log("name",import.meta.env.VITE_NAME);
   return (
     <EmployeeState>
       <BrowserRouter>
